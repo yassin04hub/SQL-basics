@@ -162,13 +162,40 @@ TO crm_read;
 GRANT crm_read 
 TO crm_read1@localhost;
 ```
-To show the assigned role we use the **SHOW GRANTS** statement
+To show the assigned role we use the `SHOW GRANTS` statement
 ```mysql
 SHOW GRANTS FOR crm_dev1@localhost;
 ```
-To see the actual privileges acquired thanks to the role by using the **USING** modifier.
+To see the actual privileges acquired thanks to the role by using the `USING` modifier.
 ```mysql
 SHOW GRANTS 
 FOR crm_write1@localhost 
 USING crm_write;
+```
+## MySQL ALTER TABLE- Create Tables
+1) Add a column to a table  use the `ALTER TABLE ADD `statement
+```mysql
+ALTER TABLE table_name
+ADD
+    new_column_name column_definition
+    [FIRST | AFTER column_name]
+```
+`FIRST AFTER` allows you to specify the position of the column.
+
+2) Add multiple columns to a table
+```mysql
+ALTER TABLE table_name
+    ADD new_column_name column_definition
+    [FIRST | AFTER column_name],
+    ADD new_column_name column_definition
+    [FIRST | AFTER column_name],
+    ...;
+```
+## MySQL ALTER TABLE – Modify columns
+### 1) Modify a column
+```mysql
+ALTER TABLE table_name
+MODIFY column_name column_definition
+[ FIRST | AFTER column_name];    
+
 ```
