@@ -39,11 +39,35 @@ FROM
 | Patterson | William   | Sales Manager (APAC) |
 | Bondur    | Gerard    | Sale Manager (EMEA)  |
 ...
-
+```
+```sql
 SELECT * 
 FROM employees;
-Returns all the columns of the table
 ```
+Returns all the columns of the table
+
+#Section 2. Sorting data
+## ORDER BY
+This command is used together with the `SELECT` command to select and more importantly sort data in a determined order by default is ascending.
+```sql
+SELECT * FROM table_name
+ORDER BY 
+    column_name [ASC|DESC];
+```
+### ORDER BY clause to sort a result set by an expression example
+```sql
+SELECT 
+	orderNumber
+	productCode
+	priceEeach*quantityOrdered as total
+FROM 
+	orderdetails
+ORDER BY 
+	priceEeach*quantityOrdered DESC;
+```
+# Section 3. Filtering data
+
+
 ## SQL Insert
 ```sql
 INSERT INTO table(c1,c2,...)
@@ -172,6 +196,7 @@ SHOW GRANTS
 FOR crm_write1@localhost 
 USING crm_write;
 ```
+# Section 12. Working with tables
 ## MySQL ALTER TABLE- Create Tables
 1) Add a column to a table  use the `ALTER TABLE ADD `statement
 ```mysql
@@ -197,5 +222,20 @@ ALTER TABLE table_name
 ALTER TABLE table_name
 MODIFY column_name column_definition
 [ FIRST | AFTER column_name];    
-
+```
+## MySQL ALTER TABLE – Rename a column in a table
+```mysql
+ALTER TABLE table_name
+CHANGE COLUMN column_name column_definition
+[ FIRST | AFTER column_name];    
+```
+##MySQL ALTER TABLE – Drop a column
+```mysql
+ALTER TABLE table_name
+DROP COLUMN column_name;
+```
+## MySQL ALTER TABLE – Rename table
+```mysql
+ALTER TABLE table_name
+RENAME TO new_name;
 ```
