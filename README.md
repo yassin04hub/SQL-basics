@@ -4,48 +4,7 @@
 ```sql
 SELECT column_name
 FROM table;
-
-SELECT 
-    lastname
-FROM 
-    employees;
-
-+-----------+
-| lastName  |
-+-----------+
-| Murphy    |
-| Patterson |
-| Firrelli  |
-| Patterson |
-| Bondur    |
-| Bow       |
-| Jennings  |
-...
-
-SELECT 
-    lastName, 
-    firstName, 
-    jobTitle
-FROM
-    employees;
-
-
-+-----------+-----------+----------------------+
-| lastname  | firstname | jobtitle             |
-+-----------+-----------+----------------------+
-| Murphy    | Diane     | President            |
-| Patterson | Mary      | VP Sales             |
-| Firrelli  | Jeff      | VP Marketing         |
-| Patterson | William   | Sales Manager (APAC) |
-| Bondur    | Gerard    | Sale Manager (EMEA)  |
-...
 ```
-```sql
-SELECT * 
-FROM employees;
-```
-Returns all the columns of the table
-
 #Section 2. Sorting data
 ## ORDER BY
 This command is used together with the `SELECT` command to select and more importantly sort data in a determined order by default is ascending.
@@ -66,7 +25,43 @@ ORDER BY
 	priceEeach*quantityOrdered DESC;
 ```
 # Section 3. Filtering data
-
+## MySQL WHERE
+```sql
+SELECT 
+	column_name
+FROM 
+	table_name
+WHERE
+	search_condition;
+```
+[![as](https://www.mysqltutorial.org/wp-content/uploads/2021/07/MySQL-Where.svg "as")](https://www.mysqltutorial.org/wp-content/uploads/2021/07/MySQL-Where.svg "as")
+```sql
+SELECT lastName,firstName,email
+FROM
+    employees
+WHERE
+    email like 'a%'
+```
+```sql
+SELECT lastName,firstName,email
+FROM
+    employees
+WHERE
+    firstName like 'a%' AND
+	lastName like 'b%';
+```
+```sql
+SELECT employeeNumber,lastName,firstName,email
+FROM
+    employees
+WHERE
+    employeeNumber between 1000 and 1060
+ORDER BY
+	employeeNumber,
+	lastName,
+    firstName;
+```
+# Section 9. Modifying data in MySQL
 
 ## SQL Insert
 ```sql
@@ -119,6 +114,53 @@ FROM
 WHERE
     employeeNumber = 1056;
 ```
+# Section 12. Working with tables
+## MySQL ALTER TABLE- Create Tables
+1) Add a column to a table  use the `ALTER TABLE ADD `statement
+```mysql
+ALTER TABLE table_name
+ADD
+    new_column_name column_definition
+    [FIRST | AFTER column_name]
+```
+`FIRST AFTER` allows you to specify the position of the column.
+
+2) Add multiple columns to a table
+```mysql
+ALTER TABLE table_name
+    ADD new_column_name column_definition
+    [FIRST | AFTER column_name],
+    ADD new_column_name column_definition
+    [FIRST | AFTER column_name],
+    ...;
+```
+## MySQL ALTER TABLE – Modify columns
+### 1) Modify a column
+```mysql
+ALTER TABLE table_name
+MODIFY column_name column_definition
+[ FIRST | AFTER column_name];    
+```
+## MySQL ALTER TABLE – Rename a column in a table
+```mysql
+ALTER TABLE table_name
+CHANGE COLUMN column_name column_definition
+[ FIRST | AFTER column_name];    
+```
+##MySQL ALTER TABLE – Drop a column
+```mysql
+ALTER TABLE table_name
+DROP COLUMN column_name;
+```
+## MySQL ALTER TABLE – Rename table
+```mysql
+ALTER TABLE table_name
+RENAME TO new_name;
+```
+
+
+
+
 ## MySQL CREATE USER
 ### How To Create User Accounts Using MySQL CREATE USER Statement
 ```sql
@@ -195,47 +237,4 @@ To see the actual privileges acquired thanks to the role by using the `USING` mo
 SHOW GRANTS 
 FOR crm_write1@localhost 
 USING crm_write;
-```
-# Section 12. Working with tables
-## MySQL ALTER TABLE- Create Tables
-1) Add a column to a table  use the `ALTER TABLE ADD `statement
-```mysql
-ALTER TABLE table_name
-ADD
-    new_column_name column_definition
-    [FIRST | AFTER column_name]
-```
-`FIRST AFTER` allows you to specify the position of the column.
-
-2) Add multiple columns to a table
-```mysql
-ALTER TABLE table_name
-    ADD new_column_name column_definition
-    [FIRST | AFTER column_name],
-    ADD new_column_name column_definition
-    [FIRST | AFTER column_name],
-    ...;
-```
-## MySQL ALTER TABLE – Modify columns
-### 1) Modify a column
-```mysql
-ALTER TABLE table_name
-MODIFY column_name column_definition
-[ FIRST | AFTER column_name];    
-```
-## MySQL ALTER TABLE – Rename a column in a table
-```mysql
-ALTER TABLE table_name
-CHANGE COLUMN column_name column_definition
-[ FIRST | AFTER column_name];    
-```
-##MySQL ALTER TABLE – Drop a column
-```mysql
-ALTER TABLE table_name
-DROP COLUMN column_name;
-```
-## MySQL ALTER TABLE – Rename table
-```mysql
-ALTER TABLE table_name
-RENAME TO new_name;
 ```
