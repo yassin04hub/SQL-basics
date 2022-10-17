@@ -5,7 +5,7 @@
 SELECT column_name
 FROM table;
 ```
-#Section 2. Sorting data
+# Section 2. Sorting data
 ## ORDER BY
 This command is used together with the `SELECT` command to select and more importantly sort data in a determined order by default is ascending.
 ```sql
