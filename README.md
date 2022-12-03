@@ -1,3 +1,4 @@
+
 # Section 1. Querying data
 ## Select From
  This statement allows you to select one or multiple columns from a certain table.
@@ -26,6 +27,8 @@ ORDER BY
 ```
 # Section 3. Filtering data
 ## MySQL WHERE
+-   Use the  `WHERE`  clause to filter rows by a condition.
+-   MySQL evaluates the  `WHERE`  clause after the  `FROM`  clause and before the  `SELECT`  and  `ORDER BY`  clauses.
 ```sql
 SELECT 
 	column_name
@@ -61,6 +64,70 @@ ORDER BY
 	lastName,
     firstName;
 ```
+## DISTINCT
+Removes duplicate rows. -   Use the MySQL  `DISTINCT`  clause to remove duplicate rows from the result set returned by the  `SELECT`  clause.
+
+    SELECT DISTINCT
+	    select_list
+	FROM 
+		table_name
+	WHERE
+		condition
+	ORDER BY
+		sort;
+
+The DISTINCT clause is executed after the SELECT statement.
+![](https://www.mysqltutorial.org/wp-content/uploads/2021/07/MySQL-Distinct.svg)
+
+    SELECT 
+	DISTINCT first_name
+	FROM employees;
+The DISTINCT clause can be applied to multiple columns.
+## IN
+-   Use the  `IN`  operator to form a condition for the  `WHERE`  clause.
+## LIMIT
+-   Use the MySQL `LIMIT` clause to constrain the number of rows returned by the `SELECT`  statement.
+# SECTION 4 JOINING TABLES
+ ## Alias
+### Alias for columns
+
+    SELECT 
+	    SUM(prices) as sum
+	FROM
+		products;
+In the groupby, order by and having it's used to refer to columns
+
+    SELECT 
+	    identifier as id
+	    SUM(prices) as sum
+	FROM
+		products
+	GROUP BY 
+		id
+	HAVING 
+		sum>1000;
+REMEMBER:
+aliases cannot be used in `WHERE` clause because this is evaluated before the `SELECT` clause.
+### Alias for Tables
+
+    SELECT 
+	    e.first_name
+    FROM 
+	    employees e
+    GROUP BY 
+	    e.first_name;
+Table aliases are used for `INNER JOIN` `LEFT JOIN` `RIGHT JOIN` and `SUBQUERIES`.
+JOIN using an alias
+
+    SELECT 
+	    customerName,
+	    COUNT(o.orderNumber) total
+	FROM 
+		customers c
+	INNER JOIN orders o USING(customerNumber)
+	GROUP BY 
+		customerName;
+
 # Section 9. Modifying data in MySQL
 
 ## SQL Insert
