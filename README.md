@@ -108,6 +108,20 @@ In the groupby, order by and having it's used to refer to columns
 		sum>1000;
 REMEMBER:
 aliases cannot be used in `WHERE` clause because this is evaluated before the `SELECT` clause.
+## Inner Join
+The `INNER JOIN` matches each row in one table with every row in other tables and allows you to query rows that contain columns from both tables.
+
+    SELECT 
+	    productCode, 
+	    productName, 
+	    textDescription
+    FROM
+	    products
+    INNER JOIN 
+	    productlines 
+	USING (productline);
+
+
 ### Alias for Tables
 
     SELECT 
@@ -127,6 +141,17 @@ JOIN using an alias
 	INNER JOIN orders o USING(customerNumber)
 	GROUP BY 
 		customerName;
+# Section 5. Grouping
+![MySQL GROUP BY](https://www.mysqltutorial.org/wp-content/uploads/2021/07/MySQL-Group-By.svg)
+The `GROUP BY` clause groups a set of rows into a set of summary rows by values of columns or expressions. The `GROUP BY` clause returns one row for each group. In other words, it reduces the number of rows in the result set.
+The `GROUP BY` clause is an optional clause of the `SELECT` statement.
+
+## HAVING CLAUSE
+The `HAVING` clause is used to specify a filter condition for groups of rows or aggregates.
+# Section 6. Subqueries
+## Subqueries
+-   A subquery is a query nested within another query (or outer query).
+-   A correlated subquery depends on the outer query.
 
 # Section 9. Modifying data in MySQL
 
